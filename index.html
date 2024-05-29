@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>자기소개서 보기</title>
+    <style>
+        body {
+            text-align: left;
+        }
+        h1 {
+            color: blue;
+        }
+        .hidden {
+            display: none;
+        }
+        @keyframes shakeCharacter {
+            0% { transform: translateX(0); }
+            25% { transform: translateX(-5px) rotate(-5deg); }
+            50% { transform: translateX(0); }
+            75% { transform: translateX(5px) rotate(5deg); }
+            100% { transform: translateX(0); }
+        }
+        .char {
+            animation: shakeCharacter 0.5s ease-in-out;
+        }
+    </style>
+</head>
+<body>
+    <button id="toggleIntro">자기소개서 보기</button>
+    <button id="funButton">재미있는 효과 보기</button>
+    <div id="intro" class="hidden">
+        <h1>자기소개서</h1>
+        <p>이름: 신예진</p>
+        <p>학번: 10716</p>
+        <p>직업: 학생</p>
+        <p>좋아하는 음식: 만두</p>
+        <p>싫어하는 음식: 토마토가 들어간 모든 음식</p>
+    </div>
+    <div id="character" class="hidden">&#x1F42C;</div>
+
+    <script>
+        var introDiv = document.getElementById("intro");
+        var toggleButton = document.getElementById("toggleIntro");
+        var funButton = document.getElementById("funButton");
+        var characterDiv = document.getElementById("character");
+
+        var characters = ["&#x1F42C;", "&#x1F431;", "&#x1F436;", "&#x1F43E;", "&#x1F428;", "&#x1F40D;", "&#x1F41D;"];
+
+        toggleButton.addEventListener("click", function() {
+            if (introDiv.classList.contains("hidden")) {
+                introDiv.classList.remove("hidden");
+                toggleButton.textContent = "자기소개서 숨기기";
+            } else {
+                introDiv.classList.add("hidden");
+                toggleButton.textContent = "자기소개서 보기";
+            }
+        });
+
+        funButton.addEventListener("click", function() {
+            var randomIndex = Math.floor(Math.random() * characters.length);
+            var randomCharacter = characters[randomIndex];
+
+            characterDiv.innerHTML = randomCharacter;
+            characterDiv.classList.remove("hidden");
+            characterDiv.classList.add("char");
+            setTimeout(function() {
+                characterDiv.classList.add("hidden");
+                characterDiv.classList.remove("char");
+            }, 1000);
+        });
+    </script>
+</body>
+</html>
